@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Flex, Text } from '@blockstack/ui';
+import { Box, Flex, Text } from '@stacks/ui';
 import { Badge } from '@components/badge';
 import { Timestamp } from '@components/timestamp';
 import { Rows } from '@components/rows';
@@ -148,6 +148,7 @@ export const TransactionDetails = ({
   transaction,
   hideContract,
   contractMeta,
+  contractName,
   ...rest
 }: TransactionDetailsProps) => {
   const contractId = getContractId(transaction);

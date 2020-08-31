@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, Ref } from 'react';
-import { Box, BoxProps } from '@blockstack/ui';
+import { Box, BoxProps } from '@stacks/ui';
 import { DarkModeIcon } from '@components/icons/dark-mode';
 import { color } from '@components/color-modes';
 import { useColorMode } from '@common/hooks/use-color-mode';

@@ -7,7 +7,7 @@ import Router from 'next/router';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Transaction } from '@blockstack/stacks-blockchain-sidecar-types';
-import { color, ColorsStringLiteral } from '@blockstack/ui';
+import { color, ColorsStringLiteral } from '@stacks/ui';
 import { BorderStyleProperty } from 'csstype';
 
 dayjs.extend(relativeTime);

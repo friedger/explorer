@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { css, Global } from '@emotion/react';
 import { themeGet } from '@styled-system/theme-get';
 import { colorModeStorage, COLOR_MODE_COOKIE } from '@common/utils';
 import { useMediaQuery } from '@common/hooks/use-media-query';
-import { Theme } from '@blockstack/ui';
+import { Theme, theme } from '@stacks/ui';
 
 export const colorGet = (path: string, fallback?: string): ((props: any) => any) =>
   themeGet('colors.' + path, fallback);
@@ -100,24 +100,26 @@ const generateCssVariables = (mode: 'light' | 'dark') => ({ colorMode = mode, ..
     return `--colors-${key}: ${colorModeStyles({ colorMode, ...rest })[key]};`;
   });
 
-export const ColorModes = createGlobalStyle`
-  :root{
-    ${generateCssVariables('light')};
+export const colorModes = css`
+  :root {
+    ${generateCssVariables('light')({ colorMode: 'light', theme })};
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      ${generateCssVariables('dark')};
-    }
-  }
-  
-  @media (prefers-color-scheme: light) {
-    :root {
-      ${generateCssVariables('light')};
-    }
-  }
-  
-  html, body, #__next {
+  // @media (prefers-color-scheme: dark) {
+  //   :root {
+  //     ${generateCssVariables('dark')({ colorMode: 'dark', theme })};
+  //   }
+  // }
+  //
+  // @media (prefers-color-scheme: light) {
+  //   :root {
+  //     ${generateCssVariables('light')({ colorMode: 'light', theme })};
+  //   }
+  // }
+
+  html,
+  body,
+  #__next {
     background: var(--colors-bg);
     border-color: var(--colors-border);
   }
@@ -135,7 +137,7 @@ export const ColorModes = createGlobalStyle`
     font-size: 16px !important;
     transition: background-color 5000s ease-in-out 0s;
   }
-  
+
   input:-ms-input-placeholder,
   textarea:-ms-input-placeholder {
     color: var(--colors-input-placeholder) !important;
@@ -143,14 +145,16 @@ export const ColorModes = createGlobalStyle`
 
   input::-ms-input-placeholder,
   textarea::-ms-input-placeholder {
-    color:  var(--colors-input-placeholder) !important;
+    color: var(--colors-input-placeholder) !important;
   }
 
   input::placeholder,
   textarea::placeholder {
-    color:  var(--colors-input-placeholder) !important;
+    color: var(--colors-input-placeholder) !important;
   }
-  `;
+`;
+
+export const ColorModes = <Global styles={colorModes} />;
 
 export const ColorModeContext = React.createContext<{ colorMode?: string; toggleColorMode?: any }>({
   colorMode: undefined,
@@ -202,7 +206,7 @@ export const ColorModeProvider = ({
 
   return (
     <ColorModeContext.Provider value={{ colorMode: mode, toggleColorMode }}>
-      <ColorModes colorMode={mode} />
+      {/*<ColorModes colorMode={mode} />*/}
       {children}
     </ColorModeContext.Provider>
   );

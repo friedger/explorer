@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text } from '@blockstack/ui';
+import { Flex, Text } from '@stacks/ui';
 import { PageWrapper } from '@components/page';
 import { SearchBarWithDropdown } from '@components/search-bar';
 import { Meta } from '@components/meta-head';

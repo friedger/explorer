@@ -1,6 +1,6 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Box, BoxProps, Flex, FlexProps, BlockstackIcon } from '@blockstack/ui';
+import { Box, BoxProps, Flex, FlexProps, BlockstackIcon } from '@stacks/ui';
 import { Link } from '@components/typography';
 import { TestnetSelector } from '@components/testnet-selector';
 import { SearchBarWithDropdown } from '@components/search-bar';
@@ -22,7 +22,7 @@ export const LogoNavItem = React.memo((props: BoxProps) => (
   </Box>
 ));
 
-const HeaderBar = React.memo((props: FlexProps) => (
+const HeaderBar: React.FC<FlexProps> = React.memo(props => (
   <Box position="fixed" zIndex={999} top={0} width="100%">
     <Flex
       zIndex={9999}
@@ -40,8 +40,8 @@ const HeaderBar = React.memo((props: FlexProps) => (
   </Box>
 ));
 
-export const Header = React.memo(
-  ({ isHome, fullWidth, ...props }: { isHome?: boolean; fullWidth?: boolean } & FlexProps) => (
+export const Header: React.FC<{ isHome?: boolean; fullWidth?: boolean } & FlexProps> = React.memo(
+  ({ isHome, fullWidth, ...props }) => (
     <HeaderBar justifyContent={isHome ? 'space-between' : 'unset'} {...props}>
       <LogoNavItem mr="base" />
       <Flex

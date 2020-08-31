@@ -1,37 +1,43 @@
-import React, { useMemo } from 'react';
-
+import React from 'react';
+// @ts-ignore
+import Prism from 'prismjs/components/prism-core';
 import Editor from 'react-simple-code-editor';
-import { createGlobalStyle } from 'styled-components';
-import { Box, BoxProps, Highlighter } from '@blockstack/ui';
+import { Box, BoxProps, Highlighter } from '@stacks/ui';
+import { Global, css } from '@emotion/react';
 
-const TextAreaOverrides = createGlobalStyle`
-.code-editor{
-  input,
-  textarea,
-  [contenteditable] {
-    caret-color: white;
-  }
-  & * {
-      font-size: 14px !important;
-  }
-  textarea{
-    width: 100% !important;
-    padding-left: 76px !important;
-    font-size: 14px !important;
-    padding-top: 2px !important;
-    font-family: 'Fira Code',monospace !important;
-    line-height: 24px !important;
-    outline: transparent;
-  }
-  & > div{
-    overflow: initial !important;
-  }
-  textarea, pre {
-    white-space: pre !important;
-    overflow-wrap: unset !important;
-  }
-}
-`;
+export const TextAreaOverrides = (
+  <Global
+    styles={css`
+      .code-editor {
+        input,
+        textarea,
+        [contenteditable] {
+          caret-color: white;
+        }
+        & * {
+          font-size: 14px !important;
+        }
+        textarea {
+          width: 100% !important;
+          padding-left: 76px !important;
+          font-size: 14px !important;
+          padding-top: 2px !important;
+          font-family: 'Fira Code', monospace !important;
+          line-height: 24px !important;
+          outline: transparent;
+        }
+        & > div {
+          overflow: initial !important;
+        }
+        textarea,
+        pre {
+          white-space: pre !important;
+          overflow-wrap: unset !important;
+        }
+      }
+    `}
+  />
+);
 
 interface CodeEditorProps extends Partial<Omit<BoxProps, 'onChange'>> {
   value: string;
@@ -42,7 +48,7 @@ interface CodeEditorProps extends Partial<Omit<BoxProps, 'onChange'>> {
   id?: string;
 }
 
-export const CodeEditor = React.memo((props: CodeEditorProps) => {
+const CodeEditor = React.memo((props: CodeEditorProps) => {
   const { style, value, onChange, language, id, disabled, maxHeight, ...rest } = props;
   const [code, setState] = React.useState(value);
 
@@ -66,7 +72,7 @@ export const CodeEditor = React.memo((props: CodeEditorProps) => {
 
   return (
     <>
-      <TextAreaOverrides />
+      {/*<TextAreaOverrides />*/}
       <Box
         className="code-editor"
         bg="ink"
@@ -81,7 +87,9 @@ export const CodeEditor = React.memo((props: CodeEditorProps) => {
           textareaId={id}
           language={language}
           onValueChange={updateContent}
-          highlight={c => <Highlighter code={c} showLineNumbers language={language as any} />}
+          highlight={c => (
+            <Highlighter Prism={Prism as any} code={c} showLineNumbers language={language as any} />
+          )}
           style={{
             ...style,
             overflowWrap: 'unset',
@@ -95,3 +103,5 @@ export const CodeEditor = React.memo((props: CodeEditorProps) => {
     </>
   );
 });
+
+export default CodeEditor;

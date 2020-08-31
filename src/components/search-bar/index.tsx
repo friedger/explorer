@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { forwardRef, Ref } from 'react';
-import { Box, Input, Text } from '@blockstack/ui';
+import { Box, Input, Text } from '@stacks/ui';
 import { MagnifyingGlass } from '../icons/magnifying-glass';
 import { useRecentlyViewedTx } from '@common/hooks/use-recently-viewed-tx';
 import debounce from 'just-debounce-it';
@@ -11,8 +11,9 @@ import Router, { useRouter } from 'next/router';
 import { Popover } from '@components/popover/popover';
 import { RecentlyViewedListItem } from '@components/recently-viewed';
 import { Transaction } from '@blockstack/stacks-blockchain-sidecar-types';
+import { forwardRefWithAs } from '@stacks/ui-core';
 
-export const SearchBar = forwardRef(
+export const SearchBar: React.FC<SearchBarProps> = forwardRefWithAs<SearchBarProps, 'div'>(
   (
     {
       onChange,
@@ -24,8 +25,8 @@ export const SearchBar = forwardRef(
       small,
       transform,
       ...rest
-    }: SearchBarProps,
-    ref: Ref<HTMLDivElement>
+    },
+    ref
   ) => {
     const inputOffset = small ? '38px' : '50px';
     return (
@@ -39,7 +40,6 @@ export const SearchBar = forwardRef(
         >
           <Text
             as="label"
-            // @ts-ignore
             htmlFor="txSearchBar"
             display="block"
             position="absolute"
@@ -53,6 +53,7 @@ export const SearchBar = forwardRef(
             p={0}
             top={0}
             left={0}
+            width="100%"
             pr="base"
             right={0}
             bottom={0}
@@ -80,8 +81,7 @@ export const SearchBar = forwardRef(
             boxShadow={
               error ? `0 0 0 3px rgba(212, 0, 26, 0.5)` : `0 0 0 3px rgba(170, 179, 255, 0)`
             }
-            ref={ref}
-            // @ts-ignore
+            ref={ref as any}
             autoComplete="off"
           />
           <MagnifyingGlass

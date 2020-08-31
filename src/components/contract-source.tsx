@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Box, BoxProps, CodeBlock } from '@blockstack/ui';
+import { Box, BoxProps } from '@stacks/ui';
 import { SectionTitle } from '@components/typography';
+import { CodeBlock } from '@components/code-block';
 
 export const ContractSource = ({ source, ...rest }: { source?: string } & BoxProps) =>
   source ? (

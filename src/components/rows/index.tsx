@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@blockstack/ui';
+import { Box } from '@stacks/ui';
 
 import { RowsProps } from '@components/rows/types';
 import { RowLabel, Row } from '@components/rows/row';

@@ -1,13 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
-import { Text, Box, Flex, BoxProps, color, FlexProps } from '@blockstack/ui';
+import { Text, Box, Flex, BoxProps, color, FlexProps } from '@stacks/ui';
 import { useColorMode } from '@common/hooks/use-color-mode';
 
-const FooterLink: React.FC<BoxProps> = React.memo(({ children, ...rest }) => (
+const FooterLink: React.FC<BoxProps & { onClick?: any }> = React.memo(({ children, ...rest }) => (
   <Text
     cursor="pointer"
     textStyle="body.small"
     color={color('text-caption')}
+    textDecoration="none"
+    css={{
+      a: {
+        textDecoration: 'none',
+        color: 'currentColor',
+      },
+    }}
     _hover={{ textDecoration: 'underline' }}
     {...rest}
   >
@@ -30,7 +37,7 @@ const LinkInNewWindow = React.memo(
   ))
 );
 
-export const Footer = React.memo((props: FlexProps & { fullWidth?: boolean }) => {
+export const Footer = React.memo(({ fullWidth, ...props }: FlexProps & { fullWidth?: boolean }) => {
   return (
     <Box width="100%" {...props}>
       <Flex
@@ -39,7 +46,7 @@ export const Footer = React.memo((props: FlexProps & { fullWidth?: boolean }) =>
         align={['center', 'center', 'unset']}
         textAlign={['center', 'center', 'unset']}
         borderTop="1px solid var(--colors-border)"
-        px={props.fullWidth ? ['base', 'base', 'extra-loose'] : 'unset'}
+        px={fullWidth ? ['base', 'base', 'extra-loose'] : 'unset'}
       >
         <Flex pb={['tight', 'tight', 'unset']} pr={['unset', 'unset', 'base']}>
           <FooterLink mr="base">

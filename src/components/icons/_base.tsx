@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, BoxProps } from '@blockstack/ui';
+import { Box, BoxProps } from '@stacks/ui';
 import { SVGProps } from 'react';
 
 export type SvgProps = React.FC<BoxProps & SVGProps<any>>;

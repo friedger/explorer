@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, BoxProps, ChevronIcon, Stack, Flex } from '@blockstack/ui';
+import { Box, BoxProps, ChevronIcon, Stack, Flex } from '@stacks/ui';
 import { CodeAccordian } from '@components/code-accordian';
 
 import { Card } from '@components/card';
@@ -54,7 +54,6 @@ const Condition = ({
       borderBottomRightRadius={isLast ? '12px' : 'unset'}
       borderBottomLeftRadius={isLast ? '12px' : 'unset'}
       as="a"
-      // @ts-ignore
       href="https://github.com/blockstack/stacks-blockchain/blob/master/sip/sip-005-blocks-and-transactions.md#transaction-post-conditions"
       target="_blank"
       _hover={{

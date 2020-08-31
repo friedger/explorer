@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack } from '@blockstack/ui';
+import { Stack } from '@stacks/ui';
 
 import { PageTop } from '@components/page';
 import { Rows } from '@components/rows';

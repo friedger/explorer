@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@styled-system/css';
-import { Box, Flex } from '@blockstack/ui';
+import { Box, Flex } from '@stacks/ui';
 import { color } from '@components/color-modes';
 import { truncateMiddle } from '@common/utils';
 import { useClickOutside } from 'use-events';

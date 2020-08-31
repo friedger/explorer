@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHarmonicIntervalFn } from 'react-use';
-import { Flex, Box, BlockstackIcon, FlexProps, BoxProps } from '@blockstack/ui';
+import { Flex, Box, BlockstackIcon, FlexProps, BoxProps } from '@stacks/ui';
 import { Tag } from '@components/tags';
 import { microToStacks, truncateMiddle, toRelativeTime, addSepBetweenStrings } from '@common/utils';
 import { Transaction, TransactionType } from '@models/transaction.interface';
@@ -15,7 +15,7 @@ export const ItemIcon = React.memo(
     opacity,
     status,
     ...rest
-  }: { type: Transaction['tx_type']; status: Transaction['tx_status'] } & BoxProps) => {
+  }: { type: Transaction['tx_type']; status: Transaction['tx_status'] } & FlexProps) => {
     let Icon = BlockstackIcon;
     if (type === 'smart_contract' || type === 'contract_call') {
       Icon = DefaultContract;
@@ -54,11 +54,15 @@ export const ItemIcon = React.memo(
   }
 );
 
-interface TxItemProps extends FlexProps {
+export interface TxItemProps extends FlexProps {
   tx: Transaction;
   isFocused?: boolean;
   isHovered?: boolean;
   target?: string;
+  onClick?: any;
+  onFocus?: any;
+  onBlur?: any;
+  tabIndex?: any;
 }
 
 const getTitle = (transaction: Transaction) => {

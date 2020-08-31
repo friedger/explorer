@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReduxNextPageContext } from '@common/types/next-store';
-import { Box, Flex, Stack, Spinner } from '@blockstack/ui';
+import { Box, Flex, Stack, Spinner } from '@stacks/ui';
 import { Card } from '@components/card';
 import { fetchTxList } from '@common/api/transactions';
 import { TxItem } from '@components/transaction-item';
